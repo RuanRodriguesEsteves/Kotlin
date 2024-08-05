@@ -1,10 +1,35 @@
+// Função para imprimir o Título
+fun imprimirTitulo(titulo: String) {
+    // Variável tituloFinal com condição para verificar se tamanho é par, se for, adiciona os espaços sem exclamação, se não, adiciona com exclamação
+    var tituloFinal = if (titulo.length % 2 == 0) " " + titulo + " " else " " + titulo + "! "
+    val tamanhoPrefixo = (98 - tituloFinal.length) / 2
+    val prefixo = "-".repeat(tamanhoPrefixo)
+    carregamento(1)
+    println("|--------------------------------------------------------------------------------------------------|")
+    println("|$prefixo$tituloFinal$prefixo|")
+    println("|--------------------------------------------------------------------------------------------------|")
+}
+
+// Função para simular um carregamento
+fun carregamento(tempo: Long, mensagem: String = "Carregando") {
+    limparTerminal(0)
+    print(mensagem)
+    print("|")
+    for (i in 0..100) {
+        print("=")
+        Thread.sleep(tempo)
+    }
+    println("|")
+    limparTerminal(0)
+}
+
 // Função que pula 100 linhas para deixar o Terminal com um aspecto limpo
-fun limparTerminal() {
-    println("Carregando...")
-    Thread.sleep(500)
+fun limparTerminal(tempo: Long) {
+    Thread.sleep(tempo)
     repeat(50) { println() }
 }
 
+// -------- Algoritmo de: Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
 // Função que calcula o desconto aplicado a um preço, e depois soma o valor de imposto em cima. 
 fun calcularDesconto(preco: Double, desconto: Double, imposto: Double): Double {
     return preco - preco * (desconto / 100) + ((preco - preco * (desconto / 100)) * (imposto / 100))
@@ -17,21 +42,32 @@ fun configurarUsuario(nome: String, idade: Int, email: String = "Não Fornecido"
 
 // Função para mostrar detalhes de uma viagem
 fun planejarViagem(destino: String, dias: Int, hospedagem: String) {
-    limparTerminal()
     println("-- Informações da Viagem --\nDestino: $destino\nDias de hospedagem: $dias\nHospedagem: $hospedagem")
+}
+
+// -------- Fim dos Algoritmo de: Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
+
+// -------- Algoritmo de: Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
+// Função que aceita qualquer quantidade de números e realiza uma soma entre eles
+fun soma(vararg numeros: Int): Int {
+    var resultado = 0 
+    for (numero in numeros) {
+        resultado = resultado + numero
+    }
+    return resultado
 }
 
 // Funções - Valores de Parâmetro Padrão e Argumentos Nomeados
 fun valoresDeParametroPadraoEArgumentosNomeados() {
+    carregamento(5)
+    // Menu de opções das Aulas do Curso
     while(true) {
-        limparTerminal()
         println("Selecione uma opção:\n[1] Calculadora De Desconto\n[2] Configuração de Usuário")
         println("[3] Planejamento de Viagem\n[0] Voltar")
         var opcao = readLine()?.toIntOrNull()
         when(opcao) {
             1 -> {
-                limparTerminal()
-                println("---- Calculadora de Desconto ----")
+                imprimirTitulo("Calculadora de Desconto")
                 var preco: Double?
                 var desconto: Double?
                 var imposto: Double?
@@ -44,12 +80,12 @@ fun valoresDeParametroPadraoEArgumentosNomeados() {
                     println("Informe o percentual do Imposto: ")
                     imposto = readLine()?.toDoubleOrNull()
                 } while(preco == null || desconto == null || imposto == null)
-                
+                carregamento(5, "Calculando")
                 println("Preço Final: " + calcularDesconto(preco, desconto, imposto))
+                limparTerminal(2000)
             }
             2 -> {
-                limparTerminal()
-                println("---- Configuração de Usuário ----")
+                imprimirTitulo("Configuração de Usuário")
                 println("Digite o Nome do Usuário:")
                 var nome = readLine().toString()
                 var idade: Int?
@@ -59,12 +95,12 @@ fun valoresDeParametroPadraoEArgumentosNomeados() {
                 } while(idade == null)
                 println("Digite seu Email:")
                 var email = readLine().toString()
-                limparTerminal()
+                carregamento(2)
                 if (email == "") configurarUsuario(nome, idade) else configurarUsuario(nome, idade, email)
+                limparTerminal(2000)
             }
             3 -> {
-                limparTerminal()
-                println("---- Planejamento de Viagem ----")
+                imprimirTitulo("Planejamento de Viagem")
                 println("Informe o Destino da Viagem:")
                 var destino = readLine().toString()
                 var dias: Int?
@@ -74,10 +110,12 @@ fun valoresDeParametroPadraoEArgumentosNomeados() {
                 } while(dias == null)
                  println("Informe o tipo de Hospedagem:\nExemplo: Hotel")
                  var hospedagem = readLine().toString()
+                 carregamento(5)
                  planejarViagem(destino, dias, hospedagem)
+                 limparTerminal(2000)
             }
             0 -> {
-                println("Voltando...")
+                carregamento(2, "Voltando")
                 break
             }
             else -> println("Escolha uma opção válida!")
@@ -86,13 +124,20 @@ fun valoresDeParametroPadraoEArgumentosNomeados() {
 }
 
 fun parametroVararg() {
+    carregamento(1)
+    println("Indisponível")
+    limparTerminal(2000)
+    return
     while(true) {
-        println("Selecione uma Opção:\n[0] Voltar")
+        println("Selecione uma Opção:\n[1] Soma de Números\n[0] Voltar")
         var opcao = readLine()?.toIntOrNull()
         when(opcao) {
             0 -> {
-                println("Voltando...")
+                carregamento(2, "Voltando")
                 break
+            }
+            1 -> {
+                println(soma(5, 5))
             }
         }
     }
@@ -100,14 +145,14 @@ fun parametroVararg() {
 
 fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
     // Menu de Opções de Conteúdo do Curso
+    carregamento(5)
     while(true) {
-        limparTerminal()
         println("Seleciona uma Opção:\n[1] Funções - Valores de Parâmetro Padrão e Argumentos Nomeados")
         println("[2] Funções - Parâmetro vararg\n[0] Voltar")
         var opcao = readLine()?.toIntOrNull()
         when(opcao) {
             0 -> {
-                println("Voltando...")
+                carregamento(2, "Voltando")
                 break
             }
             1 -> valoresDeParametroPadraoEArgumentosNomeados()
@@ -119,10 +164,9 @@ fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
 
 // Função que inicia o Script
 fun main() {
-
     // Menu de Opções de Curso
+    imprimirTitulo("Seja Bem Vindo")
     while(true) {
-        limparTerminal()
         println("Selecione uma opção:\n[1] Introdução Prática à Linguagem de Programação Kotlin\n[0] Sair")
         var opcao = readLine()?.toIntOrNull()
         when(opcao) {
