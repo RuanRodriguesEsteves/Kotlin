@@ -1,3 +1,5 @@
+// -------- Funções Úteis --------
+
 // Função para imprimir o Título
 fun imprimirTitulo(titulo: String) {
     // Variável tituloFinal com condição para verificar se tamanho é par, se for, adiciona os espaços sem exclamação, se não, adiciona com exclamação
@@ -29,6 +31,8 @@ fun limparTerminal(tempo: Long) {
     repeat(50) { println() }
 }
 
+// -------- Fim Funções Úteis --------
+
 // -------- Algoritmo de: Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
 // Função que calcula o desconto aplicado a um preço, e depois soma o valor de imposto em cima. 
 fun calcularDesconto(preco: Double, desconto: Double, imposto: Double): Double {
@@ -57,7 +61,7 @@ fun soma(vararg numeros: Int): Int {
     return resultado
 }
 
-// Funções - Valores de Parâmetro Padrão e Argumentos Nomeados
+// -------- Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
 fun valoresDeParametroPadraoEArgumentosNomeados() {
     carregamento(5)
     // Menu de opções das Aulas do Curso
@@ -122,12 +126,11 @@ fun valoresDeParametroPadraoEArgumentosNomeados() {
         }
     }
 }
+// -------- Fim Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
 
+// -------- Funções - Parâmetro vararg --------
 fun parametroVararg() {
-    carregamento(1)
-    println("Indisponível")
-    limparTerminal(2000)
-    return
+    carregamento(5)
     while(true) {
         println("Selecione uma Opção:\n[1] Soma de Números\n[0] Voltar")
         var opcao = readLine()?.toIntOrNull()
@@ -137,11 +140,32 @@ fun parametroVararg() {
                 break
             }
             1 -> {
-                println(soma(5, 5))
+                imprimirTitulo("Soma de Números")
+                var quantidade: Int?
+                val numeros = mutableListOf<Int>()
+                do {
+                    println("Primeiro, informe quantos números exestirá na soma: Certifique-se de que será um valor inteiro")
+                    quantidade = readLine()?.toIntOrNull()
+                } while(quantidade == null)
+
+                for(i in 1..quantidade) {
+                    var numero: Int?
+                    do {
+                        println("Digite o $i° Número, certifique-se de que seja um inteiro:")
+                        numero = readLine()?.toIntOrNull()
+                    } while(numero == null)
+                    numeros.add(numero)
+                }
+                
+                println("Números Informados:\n $numeros\nResultado: ${soma(*numeros.toIntArray())} ")
+                limparTerminal(2000)
             }
         }
+
     }
 }
+// -------- Fim Funções - Parâmetro vararg --------
+
 
 fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
     // Menu de Opções de Conteúdo do Curso
