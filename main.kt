@@ -33,6 +33,8 @@ fun limparTerminal(tempo: Long) {
 
 // -------- Fim Funções Úteis --------
 
+
+
 // -------- Algoritmo de: Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
 // Função que calcula o desconto aplicado a um preço, e depois soma o valor de imposto em cima. 
 fun calcularDesconto(preco: Double, desconto: Double, imposto: Double): Double {
@@ -51,7 +53,9 @@ fun planejarViagem(destino: String, dias: Int, hospedagem: String) {
 
 // -------- Fim dos Algoritmo de: Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
 
-// -------- Algoritmo de: Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
+
+
+// -------- Algoritmo de: Funções - Parâmetro vararg --------
 // Função que aceita qualquer quantidade de números e realiza uma soma entre eles
 fun soma(vararg numeros: Int): Int {
     var resultado = 0 
@@ -59,6 +63,16 @@ fun soma(vararg numeros: Int): Int {
         resultado = resultado + numero
     }
     return resultado
+}
+
+fun concatenar(vararg palavras: String): String {
+    var frase = ""
+
+    for(palavra in palavras) {
+        frase = "$frase | $palavra"
+    }
+
+    return frase
 }
 
 // -------- Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
@@ -132,7 +146,7 @@ fun valoresDeParametroPadraoEArgumentosNomeados() {
 fun parametroVararg() {
     carregamento(5)
     while(true) {
-        println("Selecione uma Opção:\n[1] Soma de Números\n[0] Voltar")
+        println("Selecione uma Opção:\n[1] Soma de Números\n[2] Concatenação de Strings\n[0] Voltar")
         var opcao = readLine()?.toIntOrNull()
         when(opcao) {
             0 -> {
@@ -143,8 +157,9 @@ fun parametroVararg() {
                 imprimirTitulo("Soma de Números")
                 var quantidade: Int?
                 val numeros = mutableListOf<Int>()
+
                 do {
-                    println("Primeiro, informe quantos números exestirá na soma: Certifique-se de que será um valor inteiro")
+                    println("Primeiro, informe quantos números exestirá na soma:\nCertifique-se de que será um valor inteiro")
                     quantidade = readLine()?.toIntOrNull()
                 } while(quantidade == null)
 
@@ -157,9 +172,30 @@ fun parametroVararg() {
                     numeros.add(numero)
                 }
                 
+                carregamento(10)
                 println("Números Informados:\n $numeros\nResultado: ${soma(*numeros.toIntArray())} ")
                 limparTerminal(2000)
             }
+            2 -> {
+                imprimirTitulo("Concatenação de Strings")
+                var quantidade: Int?
+                val palavras = mutableListOf<String>()
+                
+                do {
+                    println("Primeiro, informe quantos números exestirá na soma:\nCertifique-se de que será um valor inteiro")
+                    quantidade = readLine()?.toIntOrNull()
+                } while(quantidade == null)
+
+                for(i in 1..quantidade) {
+                    println("Digite sua palavra ou Frase:")
+                    palavras.add(readLine().toString())
+                }
+
+                carregamento(10)
+                println("Palavras ou Frases Digitadas: $palavras\nResultado:\n${concatenar(*palavras.toTypedArray())}")
+                limparTerminal(2000)
+            }
+            else -> println("Escolha uma opção válida!")
         }
 
     }
@@ -167,6 +203,8 @@ fun parametroVararg() {
 // -------- Fim Funções - Parâmetro vararg --------
 
 
+
+// Função para selecionar qual o conteúdo dos algoritmos
 fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
     // Menu de Opções de Conteúdo do Curso
     carregamento(5)
@@ -185,6 +223,8 @@ fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
         }
     }
 }
+
+
 
 // Função que inicia o Script
 fun main() {
