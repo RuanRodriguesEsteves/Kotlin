@@ -86,10 +86,55 @@ fun media(vararg numeros: Int): Double {
 
     return resultado / numeros.size
 }
+// -------- Fim Algoritmo de: Funções - Parâmetro vararg --------
+
+
+// -------- Modificando Variáveis --------
+
+fun modificandoVariaveis() {
+    println("Crie um programa que define uma variável var e uma constante val. Modifique a variável var e tente modificar a constante val para observar o comportamento.")
+    limparTerminal(5000)
+}
+
+fun listaDeTarefas() {
+    val listaDeTarefas = mutableListOf<String>()
+    var opcao: Int? = null
+    
+    while(opcao != 0) {
+        println("Selecione uma opção:\n[1] Adicionar Item a Lista\n[2] Visualizar Lista\n[0] Voltar")
+        opcao = readLine()?.toIntOrNull()
+
+        when(opcao) {
+            0 -> {
+                carregamento(2, "Voltando")
+            }
+            1 -> {
+                limparTerminal(0)
+                println("Informe o Item:")
+                listaDeTarefas.add(readLine().toString())
+            }
+            2-> {
+                limparTerminal(0)
+                for(tarefa in listaDeTarefas) {
+                    println(tarefa)
+                }
+                limparTerminal(2000)
+            }
+            3 -> {
+
+            }
+            else -> println("Escolha uma opção válida!")
+        }
+    }
+}
+
+// -------- Fim Modificando Variáveis --------
+
+
 
 // -------- Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
 fun valoresDeParametroPadraoEArgumentosNomeados() {
-    carregamento(5)
+    imprimirTitulo("Funções - Valores de Parâmetro Padrão e Argumentos Nomeados")
     // Menu de opções das Aulas do Curso
     while(true) {
         println("Selecione uma opção:\n[1] Calculadora De Desconto\n[2] Configuração de Usuário")
@@ -156,7 +201,7 @@ fun valoresDeParametroPadraoEArgumentosNomeados() {
 
 // -------- Funções - Parâmetro vararg --------
 fun parametroVararg() {
-    carregamento(5)
+    imprimirTitulo("Funções - Parâmetro vararg")
     while(true) {
         println("Selecione uma Opção:\n[1] Soma de Números\n[2] Concatenação de Strings\n[3] Média de Valores\n[0] Voltar")
         var opcao = readLine()?.toIntOrNull()
@@ -241,13 +286,47 @@ fun parametroVararg() {
 
 
 
+// -------- Parâmetro Var e Val --------
+fun variaveisVarEVal() {
+    imprimirTitulo("Parâmetro Var e Val")
+    
+    
+    while(true){
+        println("Selecione uma Opção:\n[1] Modificando Variáveis(Irrelevante. Apenas leitura do exercício proposto.)\n[2] Lista de Tarefas\n[3] Contador de Visitas\n[0] Voltar")
+        var opcao: Int? = readLine()?.toIntOrNull()
+        when(opcao) {
+            0 -> {
+                carregamento(2, "Voltando")
+                break
+            }
+            1 -> {
+                imprimirTitulo("Modificando Variávels")
+                modificandoVariaveis()
+            }
+            2 -> {
+                imprimirTitulo("Lista de Tarefas")
+                listaDeTarefas()
+            }
+            3 -> {
+                imprimirTitulo("Contador de Visitas")
+                println("Indisponível")
+                limparTerminal(2000)
+            }
+            else -> println("Escolha uma opção válida!")
+        }
+    }
+}
+// -------- Fim Parâmetro Var e Val --------
+
+
+
 // Função para selecionar qual o conteúdo dos algoritmos
 fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
     // Menu de Opções de Conteúdo do Curso
     carregamento(5)
     while(true) {
         println("Seleciona uma Opção:\n[1] Funções - Valores de Parâmetro Padrão e Argumentos Nomeados")
-        println("[2] Funções - Parâmetro vararg\n[0] Voltar")
+        println("[2] Funções - Parâmetro vararg\n[3] Variáveis var e val\n[0] Voltar")
         var opcao = readLine()?.toIntOrNull()
         when(opcao) {
             0 -> {
@@ -256,6 +335,7 @@ fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
             }
             1 -> valoresDeParametroPadraoEArgumentosNomeados()
             2 -> parametroVararg()
+            3 -> variaveisVarEVal()
             else -> println("Escolha um opção válida!")
         }
     }
