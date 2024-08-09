@@ -65,6 +65,7 @@ fun soma(vararg numeros: Int): Int {
     return resultado
 }
 
+// Função que aceita qualquer quantidade de Strings e concatena cada uma delas em uma única variável
 fun concatenar(vararg palavras: String): String {
     var frase = ""
 
@@ -73,6 +74,17 @@ fun concatenar(vararg palavras: String): String {
     }
 
     return frase
+}
+
+// Função que recebe qualquer quantidade de números Inteiros e mostra a média
+fun media(vararg numeros: Int): Double {
+    var resultado = 0.00
+
+    for(numero in numeros) {
+        resultado = resultado + numero
+    }
+
+    return resultado / numeros.size
 }
 
 // -------- Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
@@ -146,7 +158,7 @@ fun valoresDeParametroPadraoEArgumentosNomeados() {
 fun parametroVararg() {
     carregamento(5)
     while(true) {
-        println("Selecione uma Opção:\n[1] Soma de Números\n[2] Concatenação de Strings\n[0] Voltar")
+        println("Selecione uma Opção:\n[1] Soma de Números\n[2] Concatenação de Strings\n[3] Média de Valores\n[0] Voltar")
         var opcao = readLine()?.toIntOrNull()
         when(opcao) {
             0 -> {
@@ -194,6 +206,31 @@ fun parametroVararg() {
                 carregamento(10)
                 println("Palavras ou Frases Digitadas: $palavras\nResultado:\n${concatenar(*palavras.toTypedArray())}")
                 limparTerminal(2000)
+            }
+            3 -> {
+                imprimirTitulo("Média de Valores")
+                var quantidade: Int?
+                val numeros = mutableListOf<Int>()
+
+                do {
+                    println("Primeiro, informe quantos números exestirá na soma:\nCertifique-se de que será um valor inteiro")
+                    quantidade = readLine()?.toIntOrNull()
+                } while(quantidade == null)
+
+                for(i in 1..quantidade) {
+                    var numero: Int?
+                    
+                    do {
+                        println("Informe o $i° número:\nCertifique-se de que seja um número inteiro.")
+                        numero = readLine()?.toIntOrNull()
+                    } while(numero == null)
+                    
+                    numeros.add(numero)
+                }
+
+                carregamento(10)
+                println("Números Informados:\n$numeros\nMédia de Valores:\n ${media(*numeros.toIntArray())}")
+                limparTerminal(1000)
             }
             else -> println("Escolha uma opção válida!")
         }
