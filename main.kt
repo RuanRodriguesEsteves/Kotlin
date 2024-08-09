@@ -120,12 +120,14 @@ fun listaDeTarefas() {
                 }
                 limparTerminal(2000)
             }
-            3 -> {
-
-            }
             else -> println("Escolha uma opção válida!")
         }
     }
+}
+
+fun contadorDeVisitas() {
+    println("Crie um programa que define uma variável var para contar o número de visitas a um site. Use uma constante val para definir um valor de incremento que não pode ser modificado. Atualize o contador de visitas várias vezes e exiba o resultado.")
+    limparTerminal(5000)
 }
 
 // -------- Fim Modificando Variáveis --------
@@ -292,7 +294,7 @@ fun variaveisVarEVal() {
     
     
     while(true){
-        println("Selecione uma Opção:\n[1] Modificando Variáveis(Irrelevante. Apenas leitura do exercício proposto.)\n[2] Lista de Tarefas\n[3] Contador de Visitas\n[0] Voltar")
+        println("Selecione uma Opção:\n[1] Modificando Variáveis(Irrelevante. Apenas leitura do exercício proposto.)\n[2] Lista de Tarefas\n[3] Contador de Visitas(Irrelevante. Apenas leitura do exercício proposto.)\n[0] Voltar")
         var opcao: Int? = readLine()?.toIntOrNull()
         when(opcao) {
             0 -> {
@@ -309,8 +311,7 @@ fun variaveisVarEVal() {
             }
             3 -> {
                 imprimirTitulo("Contador de Visitas")
-                println("Indisponível")
-                limparTerminal(2000)
+                contadorDeVisitas()
             }
             else -> println("Escolha uma opção válida!")
         }
