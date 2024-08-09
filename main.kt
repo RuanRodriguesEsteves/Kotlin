@@ -1,5 +1,4 @@
 // -------- Funções Úteis --------
-
 // Função para imprimir o Título
 fun imprimirTitulo(titulo: String) {
     // Variável tituloFinal com condição para verificar se tamanho é par, se for, adiciona os espaços sem exclamação, se não, adiciona com exclamação
@@ -30,12 +29,11 @@ fun limparTerminal(tempo: Long) {
     Thread.sleep(tempo)
     repeat(50) { println() }
 }
-
 // -------- Fim Funções Úteis --------
 
+// ------------------------------------------------------------------------------------------------
 
-
-// -------- Algoritmo de: Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
+// -------- Algoritmos de: Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
 // Função que calcula o desconto aplicado a um preço, e depois soma o valor de imposto em cima. 
 fun calcularDesconto(preco: Double, desconto: Double, imposto: Double): Double {
     return preco - preco * (desconto / 100) + ((preco - preco * (desconto / 100)) * (imposto / 100))
@@ -50,12 +48,11 @@ fun configurarUsuario(nome: String, idade: Int, email: String = "Não Fornecido"
 fun planejarViagem(destino: String, dias: Int, hospedagem: String) {
     println("-- Informações da Viagem --\nDestino: $destino\nDias de hospedagem: $dias\nHospedagem: $hospedagem")
 }
+// -------- Fim dos Algoritmos de: Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
 
-// -------- Fim dos Algoritmo de: Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
+// ------------------------------------------------------------------------------------------------
 
-
-
-// -------- Algoritmo de: Funções - Parâmetro vararg --------
+// -------- Algoritmos de: Funções - Parâmetro vararg --------
 // Função que aceita qualquer quantidade de números e realiza uma soma entre eles
 fun soma(vararg numeros: Int): Int {
     var resultado = 0 
@@ -86,16 +83,17 @@ fun media(vararg numeros: Int): Double {
 
     return resultado / numeros.size
 }
-// -------- Fim Algoritmo de: Funções - Parâmetro vararg --------
+// -------- Fim Algoritmos de: Funções - Parâmetro vararg --------
 
+// ------------------------------------------------------------------------------------------------
 
-// -------- Modificando Variáveis --------
-
+// -------- Algoritmos de Modificando Variáveis --------
 fun modificandoVariaveis() {
     println("Crie um programa que define uma variável var e uma constante val. Modifique a variável var e tente modificar a constante val para observar o comportamento.")
     limparTerminal(5000)
 }
 
+// Algoritmo que adiciona itens a lista e visualiza a lista
 fun listaDeTarefas() {
     val listaDeTarefas = mutableListOf<String>()
     var opcao: Int? = null
@@ -129,10 +127,21 @@ fun contadorDeVisitas() {
     println("Crie um programa que define uma variável var para contar o número de visitas a um site. Use uma constante val para definir um valor de incremento que não pode ser modificado. Atualize o contador de visitas várias vezes e exiba o resultado.")
     limparTerminal(5000)
 }
+// -------- Fim Algortimos de Modificando Variáveis --------
 
-// -------- Fim Modificando Variáveis --------
+// ------------------------------------------------------------------------------------------------
 
+// -------- Algoritmos de Null Safety Nulidade --------
+// Função que verifica se nome do meio é nulo, se for, retorna somente o nome e sobrenome, se não, retorna o nome completo
+fun obterNomeCompleto(nome: String, nomeDoMeio: String?, sobrenome: String): String {
+    if(nomeDoMeio == null) {
+        return "$nome $sobrenome"
+    } else {
+        return "$nome $nomeDoMeio $sobrenome"
+    }
+}
 
+// -------- Fim Algoritmos de Null Safety Nulidade --------
 
 // -------- Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
 fun valoresDeParametroPadraoEArgumentosNomeados() {
@@ -200,6 +209,8 @@ fun valoresDeParametroPadraoEArgumentosNomeados() {
     }
 }
 // -------- Fim Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
+
+
 
 // -------- Funções - Parâmetro vararg --------
 fun parametroVararg() {
@@ -292,7 +303,6 @@ fun parametroVararg() {
 fun variaveisVarEVal() {
     imprimirTitulo("Parâmetro Var e Val")
     
-    
     while(true){
         println("Selecione uma Opção:\n[1] Modificando Variáveis(Irrelevante. Apenas leitura do exercício proposto.)\n[2] Lista de Tarefas\n[3] Contador de Visitas(Irrelevante. Apenas leitura do exercício proposto.)\n[0] Voltar")
         var opcao: Int? = readLine()?.toIntOrNull()
@@ -321,13 +331,56 @@ fun variaveisVarEVal() {
 
 
 
+// -------- Null Safety Nulidade --------
+fun nullSafetyNulidade() {
+    imprimirTitulo("Null Safety Nulidade")
+    
+    while(true){
+        println("Selecione uma Opção:\n[1] Verificação de Nulo com Operador de Elvis\n[0] Voltar")
+        var opcao: Int? = readLine()?.toIntOrNull()
+        when(opcao) {
+            0 -> {
+                carregamento(2, "Voltando")
+                break
+            }
+            1 -> {
+                imprimirTitulo("Verificação de Nulo com Operador de Elvis")
+                
+                println("Informe o primeiro nome:")
+                val nome = readLine().toString()
+                var nomeDoMeio: String? = null
+                var sobrenome: String
+                
+                println("Deseja informar o nome do Meio?\nCertifique-se de que Seja as opções informadas\n[1] Sim\n[Qualquer Tecla] Não")
+                opcao = readLine()?.toIntOrNull()
+
+                if(opcao == 1) {
+                    println("Informe o nome do meio:")
+                    nomeDoMeio = readLine().toString()
+                }
+
+                println("Informe o sobrenome:")
+                sobrenome = readLine().toString()
+
+                limparTerminal(0)
+                println(obterNomeCompleto(nome, nomeDoMeio, sobrenome))
+                limparTerminal(2000)
+            }
+            else -> println("Escolha uma opção válida!")
+        }
+    }
+}
+// -------- Fim Null Safety Nulidade --------
+
+
+
 // Função para selecionar qual o conteúdo dos algoritmos
 fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
     // Menu de Opções de Conteúdo do Curso
     carregamento(5)
     while(true) {
         println("Seleciona uma Opção:\n[1] Funções - Valores de Parâmetro Padrão e Argumentos Nomeados")
-        println("[2] Funções - Parâmetro vararg\n[3] Variáveis var e val\n[0] Voltar")
+        println("[2] Funções - Parâmetro vararg\n[3] Variáveis var e val\n[4] Null Safety Nulidade\n[0] Voltar")
         var opcao = readLine()?.toIntOrNull()
         when(opcao) {
             0 -> {
@@ -337,10 +390,12 @@ fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
             1 -> valoresDeParametroPadraoEArgumentosNomeados()
             2 -> parametroVararg()
             3 -> variaveisVarEVal()
+            4 -> nullSafetyNulidade()
             else -> println("Escolha um opção válida!")
         }
     }
 }
+// Fim Função para selecionar qual o conteúdo dos algoritmos
 
 
 
