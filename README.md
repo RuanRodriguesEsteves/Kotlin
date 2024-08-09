@@ -19,3 +19,13 @@ Crie uma função planejarViagem que aceita os seguintes parâmetros:
 - hospedagem: o tipo de hospedagem, com valor padrão de "hotel".
 
 A função deve imprimir uma mensagem detalhando o plano da viagem.
+
+### Funções - Parâmetro vararg
+#### Exercício 1: Soma de Números
+Crie uma função chamada soma que aceita um número variável de parâmetros inteiros e retorna a soma de todos eles.
+
+#### Exercício 2: Concatenação de Strings
+Crie uma função chamada concatenar que aceita um número variável de strings e retorna uma única string que é a concatenação de todas as strings fornecidas, separadas por um espaço.
+
+#### Exercício 3: Média de Valores
+Crie uma função chamada media que aceita um número variável de valores Double e retorna a média desses valores.
