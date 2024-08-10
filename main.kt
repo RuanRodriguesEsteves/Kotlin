@@ -141,7 +141,13 @@ fun obterNomeCompleto(nome: String, nomeDoMeio: String?, sobrenome: String): Str
     }
 }
 
+// Função que retorna a quantidade de caracter que tem em uma String
+fun contarCaracteres(entrada: String): Int {
+    return entrada?.length ?: 0
+}
 // -------- Fim Algoritmos de Null Safety Nulidade --------
+
+// ------------------------------------------------------------------------------------------------
 
 // -------- Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
 fun valoresDeParametroPadraoEArgumentosNomeados() {
@@ -336,7 +342,7 @@ fun nullSafetyNulidade() {
     imprimirTitulo("Null Safety Nulidade")
     
     while(true){
-        println("Selecione uma Opção:\n[1] Verificação de Nulo com Operador de Elvis\n[0] Voltar")
+        println("Selecione uma Opção:\n[1] Verificação de Nulo com Operador de Elvis\n[2] Operador Seguro de Chamada (?.) e Operador Elvis (?:)\n[0] Voltar")
         var opcao: Int? = readLine()?.toIntOrNull()
         when(opcao) {
             0 -> {
@@ -364,6 +370,16 @@ fun nullSafetyNulidade() {
 
                 limparTerminal(0)
                 println(obterNomeCompleto(nome, nomeDoMeio, sobrenome))
+                limparTerminal(2000)
+            }
+            2 -> {
+                imprimirTitulo("Operador Seguro de Chamada (?.) e Operador Elvis (?:)")
+
+                println("Digite qualquer palavra ou Frase para contar o número de caracteres:\n")
+                val entrada = readLine().toString()
+
+                limparTerminal(0)
+                println(contarCaracteres(entrada))
                 limparTerminal(2000)
             }
             else -> println("Escolha uma opção válida!")
