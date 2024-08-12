@@ -145,6 +145,11 @@ fun obterNomeCompleto(nome: String, nomeDoMeio: String?, sobrenome: String): Str
 fun contarCaracteres(entrada: String): Int {
     return entrada?.length ?: 0
 }
+
+fun revertString(string: String?): String {
+    val revertedString = string ?: throw IllegalArgumentException("A String não pode ser nula!")
+    return string.reversed()
+}
 // -------- Fim Algoritmos de Null Safety Nulidade --------
 
 // ------------------------------------------------------------------------------------------------
@@ -342,7 +347,7 @@ fun nullSafetyNulidade() {
     imprimirTitulo("Null Safety Nulidade")
     
     while(true){
-        println("Selecione uma Opção:\n[1] Verificação de Nulo com Operador de Elvis\n[2] Operador Seguro de Chamada (?.) e Operador Elvis (?:)\n[0] Voltar")
+        println("Selecione uma Opção:\n[1] Verificação de Nulo com Operador de Elvis\n[2] Operador Seguro de Chamada (?.) e Operador Elvis (?:)\n[3] Operador !! e Tratamento de Exceção\n[0] Voltar")
         var opcao: Int? = readLine()?.toIntOrNull()
         when(opcao) {
             0 -> {
@@ -380,6 +385,17 @@ fun nullSafetyNulidade() {
 
                 limparTerminal(0)
                 println(contarCaracteres(entrada))
+                limparTerminal(2000)
+            }
+            3 -> {
+                imprimirTitulo("Operador !! e Tratamento de Exceção")
+                println("Digite uma palavra ou frase para que seja exibida revertida:\nObs. Se for vazia, em branco, ou nula, irá gerar um erro java.lang.IllegalArgumentException mostrando a mensagem: \"A String não pode ser nula!\"")
+                var string: String? = readLine()
+                
+                string = if(string.isNullOrBlank()) null else string
+
+                limparTerminal(0)
+                println(revertString(string))
                 limparTerminal(2000)
             }
             else -> println("Escolha uma opção válida!")
