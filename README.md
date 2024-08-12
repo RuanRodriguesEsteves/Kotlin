@@ -41,9 +41,11 @@ Crie uma função chamada media que aceita um número variável de valores Doubl
 #### Exercício 1: Modificando Variáveis
 Crie um programa que define uma variável var e uma constante val. Modifique a variável var e tente modificar a constante val para observar o comportamento.
 
+---
 #### Exercício 2: Lista de Tarefas
 Crie um programa que define uma lista de tarefas usando uma variável val. Adicione e remova tarefas da lista usando métodos de mutação. Mostre que a referência à lista não pode mudar, mas o conteúdo da lista pode.
 
+---
 #### Exercício 3: Contador de Visitas
 Crie um programa que define uma variável var para contar o número de visitas a um site. Use uma constante val para definir um valor de incremento que não pode ser modificado. Atualize o contador de visitas várias vezes e exiba o resultado.
 
@@ -52,8 +54,10 @@ Crie um programa que define uma variável var para contar o número de visitas a
 #### Exercício 1: Verificação de Nulo com Operador de Elvis
 Crie uma função chamada obterNomeCompleto que recebe um nome do meio opcional (String?) e um sobrenome (String). Retorne o nome completo no formato "Nome Sobrenome". Se o nome do meio for null, apenas retorne "Nome Sobrenome".
 
+---
 #### Exercício 2: Operador Seguro de Chamada (?.) e Operador Elvis (?:)
 Crie uma função chamada contarCaracteres que aceita uma string opcional (String?) e retorna o número de caracteres da string. Se a string for null, retorne 0. Use o operador seguro de chamada (?.) e o operador Elvis (?:).
 
+---
 #### Exercício 3: Operador !! e Tratamento de Exceção
 Crie uma função chamada reverterString que aceita uma string opcional (String?). Se a string não for null, retorne a string invertida. Se a string for null, lance uma exceção IllegalArgumentException com uma mensagem apropriada. Use o operador !! para garantir que a string não seja nula antes de inverter.
