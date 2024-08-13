@@ -50,7 +50,7 @@ Crie um programa que define uma lista de tarefas usando uma variável val. Adici
 Crie um programa que define uma variável var para contar o número de visitas a um site. Use uma constante val para definir um valor de incremento que não pode ser modificado. Atualize o contador de visitas várias vezes e exiba o resultado.
 
 ---
-### Variáveis var e val
+### Null Safety Nulidade
 #### Exercício 1: Verificação de Nulo com Operador de Elvis
 Crie uma função chamada obterNomeCompleto que recebe um nome do meio opcional (String?) e um sobrenome (String). Retorne o nome completo no formato "Nome Sobrenome". Se o nome do meio for null, apenas retorne "Nome Sobrenome".
 

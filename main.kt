@@ -1,7 +1,9 @@
 // -------- Classes de Classes --------
 class Pessoa(val nome: String, val idade: Int) {
     fun apresentar() {
+        carregamento(10)
         println("Olá, meu nome é $nome e eu tenho $idade anos.")
+        limparTerminal(2000)
     }
 }
 // -------- Fim Classes de Classes --------
@@ -37,6 +39,16 @@ fun carregamento(tempo: Long, mensagem: String = "Carregando") {
 fun limparTerminal(tempo: Long) {
     Thread.sleep(tempo)
     repeat(50) { println() }
+}
+
+fun retornarNumeroInteiro(mensagem: String): Int {
+    var numero: Int?
+    do {
+        println("$mensagem\nCerifique-se de que seja um número inteiro.")
+        numero = readLine()?.toIntOrNull()
+    } while(numero == null)
+
+    return numero
 }
 // -------- Fim Funções Úteis --------
 
@@ -193,33 +205,32 @@ fun valoresDeParametroPadraoEArgumentosNomeados() {
             2 -> {
                 imprimirTitulo("Configuração de Usuário")
                 println("Digite o Nome do Usuário:")
-                var nome = readLine().toString()
-                var idade: Int?
-                do {
-                    println("Cerifique-se de que seja um valor inteiro.\nDigite a idade:")
-                    idade = readLine()?.toIntOrNull()
-                } while(idade == null)
+
+                val nome = readLine().toString()
+                val idade = retornarNumeroInteiro("Digite a idade");
+                
                 println("Digite seu Email:")
-                var email = readLine().toString()
+                val email = readLine().toString()
+
                 carregamento(2)
                 if (email == "") configurarUsuario(nome, idade) else configurarUsuario(nome, idade, email)
                 limparTerminal(2000)
             }
             3 -> {
                 imprimirTitulo("Planejamento de Viagem")
+
                 println("Informe o Destino da Viagem:")
-                var destino = readLine().toString()
-                var dias: Int?
-                do {
-                    println("Informe quantos dias irá ficar e cerifique-se de que seja um valor inteiro:")
-                    dias = readLine()?.toIntOrNull()
-                } while(dias == null)
-                 println("Informe o tipo de Hospedagem:\nExemplo: Hotel")
-                 var hospedagem = readLine().toString()
-                 carregamento(5)
-                 planejarViagem(destino, dias, hospedagem)
-                 limparTerminal(2000)
-            }
+                val destino = readLine().toString()
+
+                val dias = retornarNumeroInteiro("Informe a quantidade de Dias:")
+
+                println("Informe o tipo de Hospedagem:\nExemplo: Hotel")
+                val hospedagem = readLine().toString()
+
+                carregamento(5)
+                planejarViagem(destino, dias, hospedagem)
+                limparTerminal(2000)
+        }
             0 -> {
                 carregamento(2, "Voltando")
                 break
@@ -245,20 +256,11 @@ fun parametroVararg() {
             }
             1 -> {
                 imprimirTitulo("Soma de Números")
-                var quantidade: Int?
+                val quantidade = retornarNumeroInteiro("Primeiro, informe quantos números exestirá na soma:")
                 val numeros = mutableListOf<Int>()
 
-                do {
-                    println("Primeiro, informe quantos números exestirá na soma:\nCertifique-se de que será um valor inteiro")
-                    quantidade = readLine()?.toIntOrNull()
-                } while(quantidade == null)
-
                 for(i in 1..quantidade) {
-                    var numero: Int?
-                    do {
-                        println("Digite o $i° Número, certifique-se de que seja um inteiro:")
-                        numero = readLine()?.toIntOrNull()
-                    } while(numero == null)
+                    val numero = retornarNumeroInteiro("Digite o $i° Número")
                     numeros.add(numero)
                 }
                 
@@ -268,13 +270,8 @@ fun parametroVararg() {
             }
             2 -> {
                 imprimirTitulo("Concatenação de Strings")
-                var quantidade: Int?
+                val quantidade = retornarNumeroInteiro("Primeiro, informe quantos números exestirá na soma:")
                 val palavras = mutableListOf<String>()
-                
-                do {
-                    println("Primeiro, informe quantos números exestirá na soma:\nCertifique-se de que será um valor inteiro")
-                    quantidade = readLine()?.toIntOrNull()
-                } while(quantidade == null)
 
                 for(i in 1..quantidade) {
                     println("Digite sua palavra ou Frase:")
@@ -287,21 +284,11 @@ fun parametroVararg() {
             }
             3 -> {
                 imprimirTitulo("Média de Valores")
-                var quantidade: Int?
+                val quantidade = retornarNumeroInteiro("Primeiro, informe quantos números exestirá na soma:")
                 val numeros = mutableListOf<Int>()
 
-                do {
-                    println("Primeiro, informe quantos números exestirá na soma:\nCertifique-se de que será um valor inteiro")
-                    quantidade = readLine()?.toIntOrNull()
-                } while(quantidade == null)
-
                 for(i in 1..quantidade) {
-                    var numero: Int?
-                    
-                    do {
-                        println("Informe o $i° número:\nCertifique-se de que seja um número inteiro.")
-                        numero = readLine()?.toIntOrNull()
-                    } while(numero == null)
+                    val numero = retornarNumeroInteiro("Informe o $i° número:")
                     
                     numeros.add(numero)
                 }
@@ -432,19 +419,14 @@ fun classes() {
 
                 println("Informe o nome da pessoa:")
                 val nome = readLine().toString()
-                var idade: Int?
-
-                do {
-                    println("Informe a idade:\nCertifique-se de que seja um número inteiro:")
-                    idade = readLine()?.toIntOrNull()
-                } while(idade == null)
+                val idade = retornarNumeroInteiro("Retorne a idade")
                 
                 val pessoa = Pessoa(nome, idade)
                 pessoa.apresentar()
 
             }
             2 -> {
-
+                
             }
             3 -> {
 
