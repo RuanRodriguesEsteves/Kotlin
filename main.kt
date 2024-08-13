@@ -1,5 +1,5 @@
 // -------- Classes de Classes --------
-// Classe Pessoa com duas propriedades e uma função de apresentação
+// Classe Pessoa com duas propriedades e um método de apresentação
 class Pessoa(val nome: String, val idade: Int) {
     // Função que imprimi uma apresentação na tela
     fun apresentar() {
@@ -9,7 +9,7 @@ class Pessoa(val nome: String, val idade: Int) {
     }
 }
 
-// Classe Retangulo com duas propriedades e duas funções para retornar Área e Altura de um retângulo
+// Classe Retangulo com duas propriedades e dois métodos para retornar Área e Altura de um retângulo
 class Retangulo(val largura: Double, val altura: Double) {
     // Função para calcular área de um retângulo
     fun area(): Double {
@@ -19,6 +19,33 @@ class Retangulo(val largura: Double, val altura: Double) {
     // Função para calcular perímetro de um retângulo
     fun perimetro(): Double {
         return largura * 2 + altura * 2
+    }
+}
+
+// Classe Conta Bancária com duas propriedades e três métodos para depositar, sacar e exibir saldo
+class ContaBancaria(val conta: Int, var saldo: Double = 0.00) {
+    fun depositar(valor: Double) {
+        carregamento(5, "Depositando")
+        saldo += valor
+        exibirSaldo()
+    }
+
+    fun sacar(valor: Double) {
+        carregamento(5, "Sacando")
+        if(saldo > 0.00) {
+            saldo -= valor
+        }else {
+            println("Saldo Insuficiente!")
+            limparTerminal(2000)
+        }
+
+        exibirSaldo()
+    }
+
+    fun exibirSaldo() {
+        carregamento(3)
+        println("Saldo atual: $saldo")
+        limparTerminal(2000)
     }
 }
 // -------- Fim Classes de Classes --------
@@ -70,7 +97,7 @@ fun retornarNumeroInteiro(mensagem: String): Int {
 fun retornarDouble(mensagem: String): Double {
     var numero: Double?
     do {
-        println("$mensagem\nCerifique-se de que seja um número inteiro.")
+        println("$mensagem\nCerifique-se de que seja um número.")
         numero = readLine()?.toDoubleOrNull()
     } while(numero == null)
 
@@ -463,7 +490,30 @@ fun classes() {
                 limparTerminal(2000)
             }
             3 -> {
+                imprimirTitulo("Conta Bancária")
 
+                var contaBancaria = ContaBancaria(1)
+                
+                while(true) {
+                    println("Selecione uma opção:\n[1] Visualizar Saldo\n[2] Depositar\n[3] Sacar\n[0] Voltar")
+                    var opcao = readLine()?.toIntOrNull()
+                    when(opcao) {
+                        0 -> {
+                            println("Voltando...")
+                            limparTerminal(0)
+                            break
+                        }
+                        1 -> contaBancaria.exibirSaldo()
+                        2 -> {
+                            val valor = retornarDouble("Informe o valor para depósito:")
+                            contaBancaria.depositar(valor)
+                        }
+                        3 -> {
+                            val valor = retornarDouble("Informe o valor para saque:")
+                            contaBancaria.sacar(valor)
+                        }
+                    }
+                }
             }
             else -> println("Escolha uma opção válida!")
         }
