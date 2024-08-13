@@ -1,3 +1,12 @@
+// -------- Classes de Classes --------
+class Pessoa(val nome: String, val idade: Int) {
+    fun apresentar() {
+        println("Olá, meu nome é $nome e eu tenho $idade anos.")
+    }
+}
+// -------- Fim Classes de Classes --------
+
+
 // -------- Funções Úteis --------
 // Função para imprimir o Título
 fun imprimirTitulo(titulo: String) {
@@ -406,13 +415,55 @@ fun nullSafetyNulidade() {
 
 
 
+// -------- Classes --------
+fun classes() {
+    imprimirTitulo("Classes")
+    
+    while(true){
+        println("Selecione uma Opção:\n[1] Classe Pessoa\n[2] Classe Retângulo\n[3] Classe Conta Bancária\n[0] Voltar")
+        var opcao: Int? = readLine()?.toIntOrNull()
+        when(opcao) {
+            0 -> {
+                carregamento(2, "Voltando")
+                break
+            }
+            1 -> {
+                imprimirTitulo("Classe Pessoa")
+
+                println("Informe o nome da pessoa:")
+                val nome = readLine().toString()
+                var idade: Int?
+
+                do {
+                    println("Informe a idade:\nCertifique-se de que seja um número inteiro:")
+                    idade = readLine()?.toIntOrNull()
+                } while(idade == null)
+                
+                val pessoa = Pessoa(nome, idade)
+                pessoa.apresentar()
+
+            }
+            2 -> {
+
+            }
+            3 -> {
+
+            }
+            else -> println("Escolha uma opção válida!")
+        }
+    }
+}
+// -------- Fim Classes --------
+
+
+
 // Função para selecionar qual o conteúdo dos algoritmos
 fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
     // Menu de Opções de Conteúdo do Curso
     carregamento(5)
     while(true) {
         println("Seleciona uma Opção:\n[1] Funções - Valores de Parâmetro Padrão e Argumentos Nomeados")
-        println("[2] Funções - Parâmetro vararg\n[3] Variáveis var e val\n[4] Null Safety Nulidade\n[0] Voltar")
+        println("[2] Funções - Parâmetro vararg\n[3] Variáveis var e val\n[4] Null Safety Nulidade\n[5] Classes\n[0] Voltar")
         var opcao = readLine()?.toIntOrNull()
         when(opcao) {
             0 -> {
@@ -423,6 +474,7 @@ fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
             2 -> parametroVararg()
             3 -> variaveisVarEVal()
             4 -> nullSafetyNulidade()
+            5 -> classes()
             else -> println("Escolha um opção válida!")
         }
     }
