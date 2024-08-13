@@ -1,12 +1,28 @@
 // -------- Classes de Classes --------
+// Classe Pessoa com duas propriedades e uma função de apresentação
 class Pessoa(val nome: String, val idade: Int) {
+    // Função que imprimi uma apresentação na tela
     fun apresentar() {
         carregamento(10)
         println("Olá, meu nome é $nome e eu tenho $idade anos.")
         limparTerminal(2000)
     }
 }
+
+// Classe Retangulo com duas propriedades e duas funções para retornar Área e Altura de um retângulo
+class Retangulo(val largura: Double, val altura: Double) {
+    // Função para calcular área de um retângulo
+    fun area(): Double {
+        return largura * altura
+    }
+
+    // Função para calcular perímetro de um retângulo
+    fun perimetro(): Double {
+        return largura * 2 + altura * 2
+    }
+}
 // -------- Fim Classes de Classes --------
+
 
 
 // -------- Funções Úteis --------
@@ -46,6 +62,16 @@ fun retornarNumeroInteiro(mensagem: String): Int {
     do {
         println("$mensagem\nCerifique-se de que seja um número inteiro.")
         numero = readLine()?.toIntOrNull()
+    } while(numero == null)
+
+    return numero
+}
+
+fun retornarDouble(mensagem: String): Double {
+    var numero: Double?
+    do {
+        println("$mensagem\nCerifique-se de que seja um número inteiro.")
+        numero = readLine()?.toDoubleOrNull()
     } while(numero == null)
 
     return numero
@@ -423,10 +449,18 @@ fun classes() {
                 
                 val pessoa = Pessoa(nome, idade)
                 pessoa.apresentar()
-
             }
             2 -> {
-                
+                imprimirTitulo("Classe Retângulo")
+
+                val largura = retornarDouble("Informe a largura do Retângulo:")
+                val altura = retornarDouble("Informe a Altura do Retângulo:")
+
+                val retangulo = Retangulo(largura, altura)
+
+                carregamento(10)
+                println("A Área do Retângulo é de: ${retangulo.area()}\nO perímetro do Retângulo é de: ${retangulo.perimetro()}")
+                limparTerminal(2000)
             }
             3 -> {
 
