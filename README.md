@@ -61,3 +61,32 @@ Crie uma função chamada contarCaracteres que aceita uma string opcional (Strin
 ---
 #### Exercício 3: Operador !! e Tratamento de Exceção
 Crie uma função chamada reverterString que aceita uma string opcional (String?). Se a string não for null, retorne a string invertida. Se a string for null, lance uma exceção IllegalArgumentException com uma mensagem apropriada. Use o operador !! para garantir que a string não seja nula antes de inverter.
+
+### Classes
+#### Exercício 1: Classe Pessoa
+Crie uma classe chamada Pessoa que possui as propriedades:
+- nome: uma String.
+- idade: um Int.
+
+Adicione um método chamado apresentar que imprime uma mensagem apresentando a pessoa no formato "Olá, meu nome é [nome] e eu tenho [idade] anos."
+
+---
+#### Exercício 2: Classe Retângulo
+Crie uma classe chamada Retangulo que possui as propriedades:
+- largura: um Double.
+- altura: um Double.
+
+Adicione dois métodos:
+- area: que retorna a área do retângulo.
+- perimetro: que retorna o perímetro do retângulo.
+
+---
+#### Exercício 3: Classe Conta Bancária
+Crie uma classe chamada ContaBancaria que possui as propriedades:
+- numero: um String.
+- saldo: um Double (inicializado com 0.0).
+
+Adicione três métodos:
+- depositar: que aceita um valor Double e adiciona ao saldo.
+- sacar: que aceita um valor Double e subtrai do saldo, se houver fundos suficientes.
+- exibirSaldo: que imprime o saldo atual.
