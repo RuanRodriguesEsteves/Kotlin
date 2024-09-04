@@ -63,6 +63,23 @@ class Caixa<C>(var item: C) {
         return item
     }
 }
+
+class Par<P>(var item1: P, var item2: P) {
+    
+    fun definirItens(novoItem1: P, novoItem2: P) {
+        item1 = novoItem1
+        item2 = novoItem2
+    }
+
+    fun obterItem1(): P {
+        return item1
+    }
+
+    fun obterItem2(): P {
+        return item2
+    }
+    
+}
 // -------- Fim Classes de Generics - Classes Genéricas --------
 
 
@@ -580,6 +597,33 @@ fun genericsClassesGenericas() {
             }
             2 -> {
                 imprimirTitulo("Par Genérico")
+
+                println("Informe o 1° Item, podendo ser de qualquer tipo:")
+                var item1 = readLine()
+                println("Informe o 2° Item, podendo ser de qualquer tipo:")
+                var item2 = readLine()
+
+                var par = Par(item1, item2)
+                while(true) {
+                    println("Selecione uma Opção:\n[1] Obter Item 1\n[2] Obter Item 2\n[0] Voltar")
+                    var opcao = readLine()?.toIntOrNull()
+                    when(opcao) {
+                        0 -> {
+                            carregamento(2, "Voltando")
+                            break
+                        }
+                        1 -> {
+                            carregamento(5)
+                            println("Item 1: ${par.obterItem1()}")
+                            limparTerminal(2000)
+                        }
+                        2 -> {
+                            carregamento(5)
+                            println("Item 2: ${par.obterItem2()}")
+                            limparTerminal(2000)
+                        }
+                    }
+                }
             }
             3 -> {
                 imprimirTitulo("Fila Genérica")
