@@ -50,6 +50,21 @@ class ContaBancaria(val conta: Int, var saldo: Double = 0.00) {
 }
 // -------- Fim Classes de Classes --------
 
+// ------------------------------------------------------------------------------------------------
+
+// -------- Classes de Generics - Classes Genéricas --------
+// Classe Genérica Caixa que pode armazenar apenas um item de qualquer tipo e contém dois métodos, um para definir e o outro para obter o item
+class Caixa<C>(var item: C) {
+    fun definirNovoItem(novoItem: C) {
+        item = novoItem
+    }
+
+    fun obterItem(): C {
+        return item
+    }
+}
+// -------- Fim Classes de Generics - Classes Genéricas --------
+
 
 
 // -------- Funções Úteis --------
@@ -523,13 +538,65 @@ fun classes() {
 
 
 
+// -------- Gerenics - Classes Genericas --------
+fun genericsClassesGenericas() {
+    imprimirTitulo("Generics - Classes Genéricas")
+    
+    while(true){
+        println("Selecione uma Opção:\n[1] Classe Caixa\n[2] Par Genérico\n[3] Fila Genérica\n[0] Voltar")
+        var opcao: Int? = readLine()?.toIntOrNull()
+        when(opcao) {
+            0 -> {
+                carregamento(2, "Voltando")
+                break
+            }
+            1 -> {
+                imprimirTitulo("Classe Caixa")
+
+                println("Informe um item, podendo ser qualquer tipo de dado:")
+                var item = readLine()
+                var caixa = Caixa(item)
+
+                while(true) {
+                    println("Selecione uma Opção:\n[1] Obter Item\n[2] Definir Novo Item\n[0] Voltar")
+                    var opcao = readLine()?.toIntOrNull()
+                    when(opcao) {
+                        0 -> {
+                            carregamento(2, "Voltando")
+                            break
+                        }
+                        1 -> {
+                            carregamento(5)
+                            println("Item atual: ${caixa.obterItem()}")
+                            limparTerminal(2000)
+                        }
+                        2 -> {
+                            println("")
+                            val novoItem = readLine()
+                            caixa.definirNovoItem(novoItem)
+                        }
+                    }
+                }
+            }
+            2 -> {
+                imprimirTitulo("Par Genérico")
+            }
+            3 -> {
+                imprimirTitulo("Fila Genérica")
+            }
+            else -> println("Escolha uma opção válida!")
+        }
+    }
+}
+// -------- Fim Gerenics - Classes Genericas --------
+
 // Função para selecionar qual o conteúdo dos algoritmos
 fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
     // Menu de Opções de Conteúdo do Curso
     carregamento(5)
     while(true) {
         println("Seleciona uma Opção:\n[1] Funções - Valores de Parâmetro Padrão e Argumentos Nomeados")
-        println("[2] Funções - Parâmetro vararg\n[3] Variáveis var e val\n[4] Null Safety Nulidade\n[5] Classes\n[0] Voltar")
+        println("[2] Funções - Parâmetro vararg\n[3] Variáveis var e val\n[4] Null Safety Nulidade\n[5] Classes\n[6] Gerenics - Classes Genericas\n[0] Voltar")
         var opcao = readLine()?.toIntOrNull()
         when(opcao) {
             0 -> {
@@ -541,6 +608,7 @@ fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
             3 -> variaveisVarEVal()
             4 -> nullSafetyNulidade()
             5 -> classes()
+            6 -> genericsClassesGenericas()
             else -> println("Escolha um opção válida!")
         }
     }

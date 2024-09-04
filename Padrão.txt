@@ -1,0 +1,24 @@
+fun classes() {
+    imprimirTitulo("Classes")
+    
+    while(true){
+        println("Selecione uma Opção:\n[1] Classe Pessoa\n[2] Classe Retângulo\n[3] Classe Conta Bancária\n[0] Voltar")
+        var opcao: Int? = readLine()?.toIntOrNull()
+        when(opcao) {
+            0 -> {
+                carregamento(2, "Voltando")
+                break
+            }
+            1 -> {
+                imprimirTitulo("Classe Pessoa")
+            }
+            2 -> {
+                imprimirTitulo("Classe Retângulo")
+            }
+            3 -> {
+                imprimirTitulo("Conta Bancária")
+            }
+            else -> println("Escolha uma opção válida!")
+        }
+    }
+}
