@@ -78,7 +78,28 @@ class Par<P>(var item1: P, var item2: P) {
     fun obterItem2(): P {
         return item2
     }
-    
+}
+
+class Fila<F> {
+    private val fila = mutableListOf<F>()
+
+    fun exibirFila() {
+        carregamento(5)
+        println(fila.toString())
+        println(fila.size)
+        limparTerminal(2000)
+    }
+
+    fun adicionarNaFila(item: F){
+        fila.add(item)
+    }
+
+    fun removerPrimeiroDaFila(){
+        if(fila.isNotEmpty()) {
+            fila.removeAt(0)
+        }
+    }
+
 }
 // -------- Fim Classes de Generics - Classes Genéricas --------
 
@@ -588,7 +609,7 @@ fun genericsClassesGenericas() {
                             limparTerminal(2000)
                         }
                         2 -> {
-                            println("")
+                            println("Definir novo Item:")
                             val novoItem = readLine()
                             caixa.definirNovoItem(novoItem)
                         }
@@ -627,6 +648,36 @@ fun genericsClassesGenericas() {
             }
             3 -> {
                 imprimirTitulo("Fila Genérica")
+
+                val fila = Fila<String>()
+                while(true) {
+                    println("Selecione uma Opção:\n[1] Adicionar Item na Fila\n[2] Remover Primeiro Item da Fila\n[3] Visualizar Fila\n[0] Voltar")
+                    var opcao = readLine()?.toIntOrNull()
+                    when(opcao) {
+                        0 -> {
+                            carregamento(2, "Voltando")
+                            break
+                        }
+                        1 -> {
+                            carregamento(5)
+                            println("Informe o Item:")
+                            val item = readLine().toString()
+                            
+                            fila.adicionarNaFila(item)
+                            carregamento(5)
+                            fila.exibirFila()
+                        }
+                        2 -> {
+                            carregamento(5, "Removendo item...")
+                            fila.removerPrimeiroDaFila()
+                            carregamento(5)
+                            fila.exibirFila()
+                        }
+                        3 -> {
+                            fila.exibirFila()
+                        }
+                    }
+                }
             }
             else -> println("Escolha uma opção válida!")
         }
