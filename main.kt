@@ -281,6 +281,27 @@ fun revertString(string: String?): String {
 
 // ------------------------------------------------------------------------------------------------
 
+// -------- Algoritmos de Gerenics - Funções Genericas --------
+// Função de Troca
+fun <T> troca(array: Array<T>, indice1: Int, indice2:Int){
+
+    val temporario = array[indice1 - 1]
+    array[indice1 - 1] = array[indice2 - 1]
+    array[indice2 - 1] = temporario
+
+}
+
+fun <A> exibirArray(array: Array<A>) {
+    for(i in array.indices) {
+        println("[${i + 1}] - ${array[i]}")
+    }
+    
+}
+// -------- Fim Algoritmos de Gerenics - Funções Genericas --------
+
+
+// ------------------------------------------------------------------------------------------------
+
 // -------- Funções - Valores de Parâmetro Padrão e Argumentos Nomeados --------
 fun valoresDeParametroPadraoEArgumentosNomeados() {
     imprimirTitulo("Funções - Valores de Parâmetro Padrão e Argumentos Nomeados")
@@ -685,13 +706,84 @@ fun genericsClassesGenericas() {
 }
 // -------- Fim Gerenics - Classes Genericas --------
 
+
+
+// -------- Gerenics - Funções Genericas --------
+fun genericsFuncoesGenericas() {
+    imprimirTitulo("Generics - Funções Genéricas")
+    
+    while(true){
+        println("Selecione uma Opção:\n[1] Função Genérica de Troca\n[2] Função Genérica de Comparação\n[3] Função Genérica de Filtro\n[0] Voltar")
+        var opcao: Int? = readLine()?.toIntOrNull()
+        when(opcao) {
+            0 -> {
+                carregamento(2, "Voltando")
+                break
+            }
+            1 -> {
+                imprimirTitulo("Função Genérica de Troca")
+
+                val quantidade = retornarNumeroInteiro("Informe quantos itens terá o seu Array:")
+                val array = Array(quantidade) {""}
+
+                for(i in array.indices) {
+                    println("Informe o item ${i + 1}° do Array:")
+                    array[i] = readLine().toString()
+                }
+
+                while(true) {
+                    println("Selecione uma Opção:\n[1] Trocar Posição de Itens do Array\n[2] Mostrar Itens do Array\n[0] Voltar")
+                    var opcao = readLine()?.toIntOrNull()
+                    when(opcao) {
+                        0 -> {
+                            carregamento(2, "Voltando")
+                            break
+                        }
+                        1 -> {
+                            println("Posição Atual:")
+                            exibirArray(array)
+                            
+                            println("Informe quais itens você quer trocar de posição:")
+                            val posicao1 = retornarNumeroInteiro("Informe a primeira posição:")
+                            val posicao2 = retornarNumeroInteiro("Informe a segunda posição:")
+
+                            troca(array, posicao1, posicao2)
+
+                            println("Nova Posição:")
+                            exibirArray(array)
+                        }
+                        2 -> {
+                            carregamento(5, "Exibindo Array...")
+                            exibirArray(array)
+                            limparTerminal(2000)
+                        }
+                    }
+                }
+
+            }
+            2 -> {
+                imprimirTitulo("Função Genérica de Comparação")
+
+
+            }
+            3 -> {
+                imprimirTitulo("Função Genérica de Filtro")
+
+
+            }
+            else -> println("Escolha uma opção válida!")
+        }
+    }
+}
+// -------- Fim Gerenics - Funções Genericas --------
+
 // Função para selecionar qual o conteúdo dos algoritmos
 fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
     // Menu de Opções de Conteúdo do Curso
     carregamento(5)
     while(true) {
         println("Seleciona uma Opção:\n[1] Funções - Valores de Parâmetro Padrão e Argumentos Nomeados")
-        println("[2] Funções - Parâmetro vararg\n[3] Variáveis var e val\n[4] Null Safety Nulidade\n[5] Classes\n[6] Gerenics - Classes Genericas\n[0] Voltar")
+        println("[2] Funções - Parâmetro vararg\n[3] Variáveis var e val\n[4] Null Safety Nulidade\n[5] Classes\n[6] Gerenics - Classes Genericas\n[7] Generics - Funções Genéricas\n[0] Voltar")
         var opcao = readLine()?.toIntOrNull()
         when(opcao) {
             0 -> {
@@ -704,6 +796,7 @@ fun introducaoPraticaALinguagemDeProgramacaoKotlin() {
             4 -> nullSafetyNulidade()
             5 -> classes()
             6 -> genericsClassesGenericas()
+            7 -> genericsFuncoesGenericas()
             else -> println("Escolha um opção válida!")
         }
     }
