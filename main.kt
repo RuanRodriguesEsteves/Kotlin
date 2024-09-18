@@ -285,18 +285,29 @@ fun revertString(string: String?): String {
 // Função de Troca
 fun <T> troca(array: Array<T>, indice1: Int, indice2:Int){
 
-    val temporario = array[indice1 - 1]
-    array[indice1 - 1] = array[indice2 - 1]
-    array[indice2 - 1] = temporario
+    try {
+        val temporario = array[indice1 - 1]
+        array[indice1 - 1] = array[indice2 - 1]
+        array[indice2 - 1] = temporario
+    } catch (e: ArrayIndexOutOfBoundsException) {
+        limparTerminal(0)
+        println("Informe uma posição válida!")
+        limparTerminal(2000)
+    }
 
 }
 
 fun <A> exibirArray(array: Array<A>) {
     for(i in array.indices) {
         println("[${i + 1}] - ${array[i]}")
-    }
-    
+    } 
 }
+
+// Função Maior
+fun <M: Comparable<M>> maior(parametro1: M, parametro2: M): M {
+    return if (parametro1 > parametro2) parametro1 else parametro2
+}
+
 // -------- Fim Algoritmos de Gerenics - Funções Genericas --------
 
 
@@ -634,6 +645,7 @@ fun genericsClassesGenericas() {
                             val novoItem = readLine()
                             caixa.definirNovoItem(novoItem)
                         }
+                        else -> println("Escolha uma opção válida!")
                     }
                 }
             }
@@ -664,6 +676,7 @@ fun genericsClassesGenericas() {
                             println("Item 2: ${par.obterItem2()}")
                             limparTerminal(2000)
                         }
+                        else -> println("Escolha uma opção válida!")
                     }
                 }
             }
@@ -697,6 +710,7 @@ fun genericsClassesGenericas() {
                         3 -> {
                             fila.exibirFila()
                         }
+                        else -> println("Escolha uma opção válida!")
                     }
                 }
             }
@@ -740,10 +754,11 @@ fun genericsFuncoesGenericas() {
                             break
                         }
                         1 -> {
+                            limparTerminal(0)
                             println("Posição Atual:")
                             exibirArray(array)
                             
-                            println("Informe quais itens você quer trocar de posição:")
+                            println("Informe quais itens você quer trocar de posição.")
                             val posicao1 = retornarNumeroInteiro("Informe a primeira posição:")
                             val posicao2 = retornarNumeroInteiro("Informe a segunda posição:")
 
@@ -751,12 +766,14 @@ fun genericsFuncoesGenericas() {
 
                             println("Nova Posição:")
                             exibirArray(array)
+                            limparTerminal(2000)
                         }
                         2 -> {
                             carregamento(5, "Exibindo Array...")
                             exibirArray(array)
                             limparTerminal(2000)
                         }
+                        else -> println("Escolha uma opção válida!")
                     }
                 }
 
@@ -764,7 +781,39 @@ fun genericsFuncoesGenericas() {
             2 -> {
                 imprimirTitulo("Função Genérica de Comparação")
 
+                while(true) {
+                    var opcao = retornarNumeroInteiro("Primeiro informe se será uma String ou número:\n[1] String\n[2] Número\n[0] Voltar")
+                    when(opcao){
+                        0 -> {
+                            carregamento(2, "Voltando")
+                            break
+                        }
+                        1 -> {
+                            println("Informe dois valores para verificar qual é o maior.\nInforme o primeiro valor:")
+                            val parametro1 = readLine().toString()
 
+                            println("Informe o segundo valor:")
+                            val parametro2 = readLine().toString()
+
+                            println("Maior Valor: ${maior(parametro1, parametro2)}")
+                            limparTerminal(2000)
+                        }
+                        2 -> {
+                            println("Informe dois valores para verificar qual é o maior.\nInforme o primeiro valor:")
+                            val parametro1 = readLine()?.toIntOrNull() ?: 0
+
+                            println("Informe o segundo valor:")
+                            val parametro2 = readLine()?.toIntOrNull() ?: 0
+
+                            println("Maior Valor: ${maior(parametro1, parametro2)}")
+                            limparTerminal(2000)
+                        }
+                        else -> println("Escolha uma opção válida!")
+                    }
+                }
+                
+
+                
             }
             3 -> {
                 imprimirTitulo("Função Genérica de Filtro")
