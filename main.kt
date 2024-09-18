@@ -727,7 +727,7 @@ fun genericsFuncoesGenericas() {
     imprimirTitulo("Generics - Funções Genéricas")
     
     while(true){
-        println("Selecione uma Opção:\n[1] Função Genérica de Troca\n[2] Função Genérica de Comparação\n[3] Função Genérica de Filtro\n[0] Voltar")
+        println("Selecione uma Opção:\n[1] Função Genérica de Troca\n[2] Função Genérica de Comparação\n[3] Função Genérica de Filtro(Indisponível)\n[0] Voltar")
         var opcao: Int? = readLine()?.toIntOrNull()
         when(opcao) {
             0 -> {
@@ -812,13 +812,12 @@ fun genericsFuncoesGenericas() {
                     }
                 }
                 
-
-                
             }
             3 -> {
                 imprimirTitulo("Função Genérica de Filtro")
-
-
+                println("Indisponível!")
+                limparTerminal(2000)
+                carregamento(5, "Saindo...")
             }
             else -> println("Escolha uma opção válida!")
         }
